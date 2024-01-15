@@ -1,9 +1,4 @@
-.PHONY: all p1 p2 p3 bonus clean vm
-
-all: p1 p2 p3 bonus vm
-
-vm:
-	cd vm && vagrant up
+.PHONY: p1 p2 p3 bonus clean  
 
 p1:
 	cd p1 && vagrant up
@@ -17,8 +12,13 @@ p3:
 bonus:
 	cd bonus && ./scripts/config.sh && sleep 10 && ./scripts/run.sh
 
-clean:
+clean:	
+	@echo -e "${YELLOW}Cleaning up Kubernetes resources...${ENDCOLOR}"	
 	cd p1 && vagrant destroy -f
 	cd p2 && vagrant destroy -f
-	# rm -f p1/confs/node-token p1/.vagrant
-	# rm -f p2/confs/node-token p1/.vagrant
+	k3d cluster delete argocd
+	kubectl delete namespace dev
+	kubectl delete namespace argocd
+	@echo -e "${YELLOW}=========================Done===========================${ENDCOLOR}"
+
+
