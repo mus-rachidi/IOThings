@@ -32,7 +32,12 @@ while true; do
         git commit -m "update"
         echo -e "${YELLOW} ====================================================${ENDCOLOR}"
         echo -e "${YELLOW} forwarding  ...${ENDCOLOR}"
-        kubectl proxy
+        # parallel kubectl port-forward --address 0.0.0.0 ::: \
+        # "svc/argocd-server -n argocd 8080:443" \
+        # "svc/gitlab-webservice-default -n gitlab 9004:8181"
+kubectl port-forward --address 0.0.0.0 svc/argocd-server -n argocd 8080:80 & kubectl port-forward --address 0.0.0.0 svc/gitlab-webservice-default -n gitlab 9001:8181 
+
+        # kubectl proxy
         # git push --set-upstream http://$username:$password@192.168.60.110:9004/root/gitlab-localhost.git main
         echo -e "${YELLOW} ====================================================${ENDCOLOR}"
       break
