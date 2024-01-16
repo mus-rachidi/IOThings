@@ -7,7 +7,7 @@ spec:
   project: default
 
   source:
-    repoURL: https://github.com/mus-rachidi/murachid_config
+    repoURL: https://github.com/mus-rachidi/murachid_config.git
     targetRevision: HEAD
     path: app/
     

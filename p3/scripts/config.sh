@@ -8,13 +8,15 @@
   echo -e "${YELLOW} Create cluster , Creating...${ENDCOLOR}"
   wget -q -O - https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash 
   k3d cluster create argocd -p "8888:8888@loadbalancer"
-
   echo -e "${YELLOW}=========================Done===========================${ENDCOLOR}"
 
-  echo -e "${YELLOW} Create the namespace dev argocd gitlab, Creating...${ENDCOLOR}"
+
+
+  echo "${YELLOW} Create the namespace dev argocd gitlab, Creating...${ENDCOLOR}"
   kubectl create namespace dev 
   kubectl create namespace argocd 
-  echo -e "${YELLOW}=========================Done===========================${ENDCOLOR}"
+  echo "${YELLOW}=========================Done===========================${ENDCOLOR}"
+
 
 
   echo -e "${YELLOW} apply argocd ...${ENDCOLOR}"
