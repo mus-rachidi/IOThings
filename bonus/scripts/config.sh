@@ -6,9 +6,9 @@
 
   export EMAIL="murachid@student.42.fr"
   export DOMAIN="gitlab.murachid.com"
-  mkdir ~/.kube 2> /dev/null
-  sudo k3s kubectl config view --raw > "$KUBECONFIG"
-  chmod 600 "$KUBECONFIG"
+  # mkdir ~/.kube 2> /dev/null
+  # sudo k3s kubectl config view --raw > "$KUBECONFIG"
+  # chmod 600 "$KUBECONFIG"
   echo -e "${YELLOW} Create cluster , Creating...${ENDCOLOR}"
   wget -q -O - https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash 
   k3d cluster create argocd -p "8888:8888@loadbalancer"
